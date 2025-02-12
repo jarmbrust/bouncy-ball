@@ -36,3 +36,14 @@ export const oppositeDirection = (
   }
   return { vectorX: ball.vectorX, vectorY: ball.vectorY };
 };
+
+export const randomStartingDirection = () => {
+  const directions = [
+    { vectorX: 2, vectorY: 2 },
+    { vectorX: -2, vectorY: 2 },
+    { vectorX: 2, vectorY: -2 },
+    { vectorX: -2, vectorY: -2 },
+  ];
+  const randomIndex = Math.floor(Math.random() * directions.length);
+  return directions[randomIndex];
+};

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, MouseEvent } from 'react';
 import BouncyBall from '@/app/components/BouncyBall';
-import { oppositeDirection } from '@/app/utilities';
+import { oppositeDirection, randomStartingDirection } from '@/app/utilities';
 
 const BallFrame = () => {
   const [ballArray, setBallArray] = useState<{ x: number; y: number, vectorX: number, vectorY: number  }[]>([]);
@@ -10,7 +10,12 @@ const BallFrame = () => {
   const [frameMin, ] = useState<{ x: number; y: number }>({ x: 15, y: 38 });
 
   const handleBallPlace = (event: MouseEvent) => {
-    setBallArray(prevBalls => [...prevBalls, { x: event.clientX, y: event.clientY, vectorX: 2, vectorY: 2 }]);
+    const direction = randomStartingDirection();
+    setBallArray(
+      prevBalls => [...prevBalls, {
+        x: event.clientX, y: event.clientY, vectorX: direction.vectorX, vectorY: direction.vectorY
+      }]
+    );
   };
 
   useEffect(() => {
