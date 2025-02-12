@@ -1,0 +1,38 @@
+
+
+export const oppositeDirection = (
+  ball: { x: number; y: number, vectorX: number; vectorY: number },
+  frameMin: { x: number; y: number },
+  frameMax: { x: number; y: number }
+) => {
+  const { x, y, vectorX, vectorY } = ball;
+
+  if (x < frameMin.x && y < frameMax.y && vectorX < 0 && vectorY < 0) {
+    return { vectorX: -vectorX, vectorY: vectorY };
+  }
+  if (x < frameMax.x && y < frameMin.y && vectorX < 0 && vectorY < 0) {
+    return { vectorX: vectorX, vectorY: -vectorY };
+  }
+
+  if (x > frameMax.x && y < frameMax.y && vectorX > 0 && vectorY < 0) {
+    return { vectorX: -vectorX, vectorY: vectorY };
+  }
+  if (x < frameMax.x && y < frameMin.y  && vectorX > 0 && vectorY < 0) {
+    return { vectorX: vectorX, vectorY: -vectorY };
+  }
+
+  if (x < frameMin.x && y < frameMax.y && vectorX < 0 && vectorY > 0) {
+    return { vectorX: -vectorX, vectorY: vectorY };
+  }
+  if (x < frameMax.x && y > frameMax.y && vectorX < 0 && vectorY > 0) {
+    return { vectorX: vectorX, vectorY: -vectorY };
+  }
+
+  if (x > frameMax.x && y < frameMax.y && vectorX > 0 && vectorY > 0) {
+    return { vectorX: -vectorX, vectorY: vectorY };
+  }
+  if (x < frameMax.x && y > frameMax.y && vectorX > 0 && vectorY > 0) {
+    return { vectorX: vectorX, vectorY: -vectorY };
+  }
+  return { vectorX: ball.vectorX, vectorY: ball.vectorY };
+};
